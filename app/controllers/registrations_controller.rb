@@ -27,9 +27,8 @@ module Milia
       # validate recaptcha first unless not enabled
       if !::Milia.use_recaptcha  ||  verify_recaptcha
 
-        @tenant = Tenant.create_new_tenant( tenant_params, user_params, coupon_params)
-
         Tenant.transaction  do
+          @tenant = Tenant.create_new_tenant( tenant_params, user_params, coupon_params)
           if @tenant.errors.empty?   # tenant created
 
             initiate_tenant( @tenant )    # first time stuff for new tenant

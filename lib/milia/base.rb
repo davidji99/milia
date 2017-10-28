@@ -104,7 +104,7 @@ module Milia
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
       def acts_as_universal_and_determines_tenant()
-        has_and_belongs_to_many :users
+        has_and_belongs_to_many :users, inverse_of: :user, autosave: true
 
         acts_as_universal()
 
