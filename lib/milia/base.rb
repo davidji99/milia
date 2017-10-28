@@ -78,8 +78,8 @@ module Milia
         # validate that a tenant exists prior to a user creation
         before_create do |new_user|
           if Thread.current[:tenant_id].blank? ||
-              !Thread.current[:tenant_id].kind_of?(Integer) ||
-              Thread.current[:tenant_id].zero?
+              !Thread.current[:tenant_id].kind_of?(String) ||
+              Thread.current[:tenant_id].empty?
 
             raise ::Milia::Control::InvalidTenantAccess, "no existing valid current tenant"
 
